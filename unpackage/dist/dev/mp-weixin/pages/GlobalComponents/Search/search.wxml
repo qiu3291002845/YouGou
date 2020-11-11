@@ -1,0 +1,1 @@
+<view class="searchBox _div"><input type="text" placeholder="搜索" data-event-opts="{{[['confirm',[['toSearch',['$event']]]],['input',[['__set_model',['','keyword','$event',[]]]]]]}}" value="{{keyword}}" bindconfirm="__e" bindinput="__e"/></view>

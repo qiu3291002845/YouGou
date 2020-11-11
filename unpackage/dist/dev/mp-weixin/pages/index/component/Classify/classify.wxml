@@ -1,0 +1,1 @@
+<view class="classifyBox"><block wx:for="{{list}}" wx:for-item="item" wx:for-index="__i0__" wx:key="goods_id"><view class="item"><image src="{{item.image_src}}"></image></view></block></view>

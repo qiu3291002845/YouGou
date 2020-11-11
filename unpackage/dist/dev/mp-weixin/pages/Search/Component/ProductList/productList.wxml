@@ -1,0 +1,1 @@
+<view><view class="actionBox"><view>综合</view><view>销量</view><view>价格</view></view><view class="productListBox"><block wx:for="{{goods}}" wx:for-item="item" wx:for-index="__i0__" wx:key="id"><product vue-id="{{'1225ee7b-1-'+__i0__}}" bind:__l="__l"></product></block></view></view>

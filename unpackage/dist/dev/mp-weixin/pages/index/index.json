@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "优购",
+  "usingComponents": {
+    "m-search": "/pages/GlobalComponents/Search/search",
+    "m-classify": "/pages/index/component/Classify/classify",
+    "m-fool-data": "/pages/index/component/FoolData/foolData",
+    "m-swiper": "/pages/index/component/Swiper/swiper"
+  }
+}

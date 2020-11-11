@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "搜索",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "search-input": "/pages/Search/Component/SearchInput/SearchInput",
+    "history-search": "/pages/Search/Component/HistorySearch/HistorySearch",
+    "product-list": "/pages/Search/Component/ProductList/productList"
+  }
+}

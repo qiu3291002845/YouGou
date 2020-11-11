@@ -1,0 +1,1 @@
+<view><m-search vue-id="8dd740cc-1" bind:__l="__l"></m-search><m-swiper vue-id="8dd740cc-2" bind:__l="__l"></m-swiper><m-classify vue-id="8dd740cc-3" bind:__l="__l"></m-classify><block wx:for="{{foolList}}" wx:for-item="item" wx:for-index="__i0__" wx:key="*this"><m-fool-data vue-id="{{'8dd740cc-4-'+__i0__}}" item="{{item}}" bind:__l="__l"></m-fool-data></block></view>

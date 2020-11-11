@@ -1,0 +1,1 @@
+<view class="searchBox"><search-input class="input" vue-id="21f83d00-1" keyword="{{keyword}}" bind:__l="__l"></search-input><block wx:if="{{!isNull}}"><history-search vue-id="21f83d00-2" bind:__l="__l"></history-search></block><block wx:else><product-list vue-id="21f83d00-3" bind:__l="__l"></product-list></block></view>

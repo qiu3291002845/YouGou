@@ -1,0 +1,1 @@
+<swiper class="swiperBox" indicator-dots="{{true}}" indicator-active-color="white" indicator-color="rgba(255,255,255,0.5)"><block wx:for="{{list}}" wx:for-item="item" wx:for-index="__i0__" wx:key="goods_id"><swiper-item><image mode="aspectFit" src="{{item.image_src}}" alt srcset></image></swiper-item></block></swiper>
