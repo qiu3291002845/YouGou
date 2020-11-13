@@ -1,6 +1,6 @@
 <template>
 	<swiper class="swiperBox" indicator-dots indicator-active-color="white" indicator-color="rgba(255,255,255,0.5)">
-		<swiper-item v-for="item in list" :key="item.goods_id">
+		<swiper-item v-for="item in list" :key="item.goods_id" @click="toDetail(item.goods_id)">
 			<image mode="aspectFit" :src="item.image_src" alt="" srcset="" />
 		</swiper-item>
 	</swiper>
@@ -11,6 +11,13 @@
 		data() {
 			return {
 				list: []
+			}
+		},
+		methods:{
+			toDetail(id){
+				uni.navigateTo({
+					url:`/pages/detail/detail?id=${id}`
+				})
 			}
 		},
 		created() {

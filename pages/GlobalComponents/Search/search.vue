@@ -1,6 +1,6 @@
 <template>
 	<div class="searchBox">
-		<input type="text" v-model="keyword" placeholder="搜索" @confirm="toSearch" >
+		<input type="text" v-model="keyword" placeholder="搜索" @confirm="toSearch">
 	</div>
 </template>
 
@@ -8,15 +8,16 @@
 	export default {
 		data() {
 			return {
-				keyword:""
+				keyword: ""
 			}
 		},
 		methods: {
 			toSearch() {
-				console.log(this.keyword)
-				uni.navigateTo({
-					url:`/pages/Search/Search?keyword=${this.keyword}`,
-				})
+				if (this.keyword !== "") {
+					uni.navigateTo({
+						url: `/pages/Search/Search?keyword=${this.keyword}`,
+					})
+				}
 			}
 		}
 	}
@@ -28,15 +29,11 @@
 		height: 75rpx;
 		width: 750rpx;
 		padding: 20rpx 0;
+					text-align: center;
 
 		input {
-			display: flex;
-			align-items: center;
-			text-align: center;
-			justify-content: center;
-			width: 90%;
+			width: 95%;
 			margin: 0 auto;
-			text-align: center;
 			height: 100%;
 			background: #fff;
 			border-radius: 10rpx;
@@ -44,8 +41,8 @@
 			-moz-border-radius: 10rpx;
 			-ms-border-radius: 10rpx;
 			-o-border-radius: 10rpx;
-			&::placeholder {
-			}
+
+			&::placeholder {}
 		}
 	}
 </style>

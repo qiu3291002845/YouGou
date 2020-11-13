@@ -5,9 +5,9 @@
 			<text class="iconfont icon-error"></text>
 		</view>
 		<view class="list">
-			<view v-for="item in list" :key="index">
+			<button @click="resKeyword(item)" v-for="(item,index) in list" :key="index">
 				{{item}}
-			</view>
+			</button>
 		</view>
 	</view>
 </template>
@@ -17,6 +17,11 @@
 		data() {
 			return {
 				list: ["小米", "小米智能电视", "小米空气净化器", "西门子洗碗机", "华为手机", "苹果", "锤子"]
+			}
+		},
+		methods: {
+			resKeyword(i) {
+				this.$emit("resKeyword",i);
 			}
 		}
 	}
@@ -41,10 +46,11 @@
 			display: inline-flex;
 			flex-wrap: wrap;
 
-			view {
+			button {
+				margin: 0;
 				background-color: #dedede;
-				padding: 15rpx 20rpx;
-				margin-right:25rpx ;
+				padding: 10rpx 15rpx;
+				margin-right: 25rpx;
 				margin-top: 25rpx;
 			}
 		}

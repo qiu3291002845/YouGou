@@ -23,11 +23,10 @@
 			"selectedIconPath": "/static/icon/icon_me_active@3x.png"
 		}]
 	},
-	"pages": [{
-		"path": "pages/Search/Search",
+	"pages": [ {
+		"path": "pages/cart/cart",
 		"style": {
-			"navigationBarTitleText": "搜索",
-			"enablePullDownRefresh": false
+			"navigationBarTitleText": "购物车"
 		}
 	},{
 		"path": "pages/index/index",
@@ -40,17 +39,24 @@
 			"navigationBarTitleText": "分类"
 		}
 	}, {
-		"path": "pages/cart/cart",
+		"path": "pages/person/person",
 		"style": {
-			"navigationBarTitleText": "",
+			"navigationBarTitleText": "个人中心",
 			"enablePullDownRefresh": false
 		}
 	}, {
-		"path": "pages/person/person",
+		"path": "pages/Search/Search",
 		"style": {
-			"navigationBarTitleText": "",
+			"navigationBarTitleText": "搜索",
 			"enablePullDownRefresh": false
 		}
+	}, {
+		"path": "pages/detail/detail",
+		"style": {
+			"navigationBarTitleText": "商品详情",
+			"enablePullDownRefresh": false
+		}
+
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

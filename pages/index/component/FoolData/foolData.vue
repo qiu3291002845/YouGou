@@ -5,11 +5,11 @@
 		</view>
 		<view class="titleList">
 			<view class="left">
-				<image :src="list.product_list[0].image_src"></image>
+				<image @click="toBigSearch" :src="list.product_list[0].image_src"></image>
 			</view>
 			<view class="right">
 				<view class="imgBox" v-for="(item,index) in rightList" :key="index">
-					<image :src="item.image_src"></image>
+					<image @click="toSearch(index)" :src="item.image_src"></image>
 				</view>
 			</view>
 		</view>
@@ -25,12 +25,28 @@
 		data() {
 			return {
 				list: [],
-				rightList: []
+				rightList: [],
+				rightNav: []
 			}
 		},
 		created() {
 			this.list = this.item;
 			this.rightList = this.item.product_list.splice(1);
+			this.rightNav = this.rightList.map(item => {
+				return item.navigator_url.split("=")[1];
+			})
+		},
+		methods: {
+			toBigSearch() {
+				uni.navigateTo({
+					url: `/pages/Search/Search?keyword=${this.list.product_list[0].navigator_url.split("=")[1]}`,
+				})
+			},
+			toSearch(i) {
+				uni.navigateTo({
+					url: `/pages/Search/Search?keyword=${this.rightNav[i]}`,
+				})
+			}
 		}
 	}
 </script>
@@ -38,6 +54,7 @@
 <style lang="scss">
 	.flootDataBox {
 		margin: 10rpx 0;
+
 		image {
 			border-radius: 5rpx;
 		}

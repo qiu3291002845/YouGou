@@ -1,0 +1,1 @@
+<view class="navBox"><view class="lxkf iconfont icon-lianxikefu"><text>联系客服</text></view><view data-event-opts="{{[['tap',[['toCart',['$event']]]]]}}" class="cart iconfont icon-gouwuche" bindtap="__e"><text>购物车</text></view><view data-event-opts="{{[['tap',[['joinCart',['$event']]]]]}}" class="joinCart" bindtap="__e">加入购物车</view><view class="ljgm">立即购买</view></view>

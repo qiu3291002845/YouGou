@@ -36,4 +36,13 @@
   padding: 20rpx 10rpx;
   border-bottom: 1px solid rgba(153, 153, 153, 0.2);
 }
+.noData {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  padding: 20rpx 10rpx;
+}
 

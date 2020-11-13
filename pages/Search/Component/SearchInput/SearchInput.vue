@@ -6,13 +6,18 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from "vuex"
 	export default {
 		props: {
 			keyword: String
 		},
 		data() {
 			return {
+				pagenum: 0,
 				searchKeyword: this.keyword,
+				list: []
 			}
 		},
 		methods: {
@@ -21,17 +26,36 @@
 				this.searchKeyword = "";
 				this.$store.commit("search/toggleIsNull", false)
 			},
-			async searchGoods() {
+			async searchGoods(val) {
+				let search = '';
+				if (val !== undefined) {
+					this.pagenum = 0;
+					search = val;
+					this.searchKeyword = val;
+				} else {
+					search = this.searchKeyword
+				}
+				this.pagenum++;
 				uni.showLoading({
 					title: '加载中'
 				});
 				let [error, res] = await uni.request({
-					url: "https://uinav.com/api/public/v1/goods/search",
-				})
+					url: `https://uinav.com/api/public/v1/goods/search?query=${search}&pagenum=${this.pagenum}`,
+				});
 				await uni.hideLoading();
-				this.$store.commit("search/changeGoods", res.data.message.goods);
+				if(res.data.message.goods.length == 0){
+					uni.showToast({
+						title:"已经到底了"
+					})
+				}
+				this.list = this.$store.state.search.goods;
+				this.list = [...this.list, ...res.data.message.goods];
+				this.$store.commit("search/changeGoods", this.list);
 			},
 			async searchProduct() {
+				await this.$store.commit("search/toggleIsNull", false);
+				this.pagenum = 0;
+				this.$store.commit("search/changeGoods", []);
 				await this.searchGoods();
 				await this.$store.commit("search/toggleIsNull", true);
 			},

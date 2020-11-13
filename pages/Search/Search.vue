@@ -1,8 +1,10 @@
 <template>
 	<view class="searchBox">
-		<SearchInput :keyword="keyword" class="input"></SearchInput>
-		<HistorySearch v-if="!isNull"></HistorySearch>
+		<SearchInput ref="searchInput" :keyword="searchKeyword" class="input"></SearchInput>
+		<HistorySearch @resKeyword="resKeyword" v-if="!isNull"></HistorySearch>
 		<ProductList v-else></ProductList>
+		<view @click="toTop" v-if="isNull && isShow" class="iconfont icon-cc-top fixedBtn">
+		</view>
 	</view>
 </template>
 
@@ -14,34 +16,69 @@
 		components: {
 			SearchInput,
 			HistorySearch,
-			ProductList
-		},	
+			ProductList,
+		},
 		props: {
 			keyword: String
 		},
 		data() {
 			return {
-
+				isShow: false,
+				searchKeyword: this.keyword
 			};
 		},
-		computed:{
-			isNull(){
+		computed: {
+			isNull() {
 				return this.$store.state.search.isNull;
-			}
-		},
-		methods:{
-			async searchGoods() {
-				let [error, res] = await uni.request({
-					url: "https://uinav.com/api/public/v1/goods/search",
-				})
-				this.$store.commit("search/changeGoods", res.message.goods)
 			},
 		},
-		onLoad() {
-		}	
+		methods: {
+			async findMore() {
+				await this.$refs.searchInput.searchGoods()
+			},
+			toTop() {
+				uni.pageScrollTo({
+					scrollTop: 0,
+					duration: 300
+				});
+			},
+			async resKeyword(val) {
+				this.$store.commit("search/changeGoods", []);
+				await this.$refs.searchInput.searchGoods(val, 0)
+				await this.$store.commit("search/toggleIsNull", true);
+			}
+		},
+		async onLoad() {
+			if (this.keyword) {
+				this.$store.commit("search/changeGoods", []);
+				await this.$refs.searchInput.searchGoods(this.keyword)
+				await this.$store.commit("search/toggleIsNull", true);
+			}
+		},
+		onPageScroll(res) {
+			if (res.scrollTop > 2400) {
+				this.isShow = true;
+			} else {
+				this.isShow = false;
+			}
+		},
+		onReachBottom() {
+			this.findMore()
+		},
 	}
 </script>
 
 <style lang="scss">
-
+	.fixedBtn {
+		background-color: #ff2d4a;
+		border-radius: 50%;
+		color: white;
+		position: fixed;
+		padding: 30rpx;
+		font-size: 45rpx;
+		display: flex;
+		align-items: center;
+		right: 5%;
+		bottom: 5%;
+	}
 </style>

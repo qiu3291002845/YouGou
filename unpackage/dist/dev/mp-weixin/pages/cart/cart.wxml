@@ -1,1 +1,1 @@
-<view></view>
+<view><address vue-id="1775f8c0-1" bind:__l="__l"></address><view class="border _div"><image src="../../static/card_border.png" mode></image></view><view class="orderBox"><block wx:for="{{orderList}}" wx:for-item="item" wx:for-index="index" wx:key="goods_id"><order class="vue-ref-in-for" vue-id="{{'1775f8c0-2-'+index}}" item="{{item}}" sIndex="{{index}}" data-ref="order" bind:__l="__l"></order></block></view><total vue-id="1775f8c0-3" bind:__l="__l"></total></view>

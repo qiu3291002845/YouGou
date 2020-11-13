@@ -5,8 +5,11 @@
 			<view>销量</view>
 			<view>价格</view>
 		</view>
-		<view class="productListBox">
-			<Product v-for="item in goods" :key="item.goods.id"></Product>
+		<view class="productListBox" v-if="goods.length > 0">
+			<Product :item="item" v-for="item in goods" :key="item.goods.id"></Product>
+		</view>
+		<view v-else class="productListBox noData">
+			<text >找不到您要搜索的商品,请搜索其他商品</text>
 		</view>
 	</view>
 </template>
@@ -20,15 +23,9 @@
 		components: {
 			Product
 		},
-		data() {
-			return {
-			}
-		},
 		computed: mapState({
 			goods: (state) => state.search.goods
 		}),
-		mounted() {
-		}
 	}
 </script>
 
@@ -39,5 +36,10 @@
 		align-items: center;
 		padding: 20rpx 10rpx;
 		border-bottom: 1px solid rgba($color: #999, $alpha: 0.2);
+	}
+	.noData{
+		display: flex;
+		justify-content: center;
+		padding: 20rpx 10rpx;
 	}
 </style>

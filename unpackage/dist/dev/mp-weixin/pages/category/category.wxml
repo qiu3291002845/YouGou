@@ -1,1 +1,1 @@
-<view><m-search vue-id="9d275500-1" bind:__l="__l"></m-search></view>
+<view><m-search vue-id="9d275500-1" bind:__l="__l"></m-search><view class="content"><left class="left" vue-id="9d275500-2" bind:__l="__l"></left><right class="right" vue-id="9d275500-3" bind:__l="__l"></right></view></view>

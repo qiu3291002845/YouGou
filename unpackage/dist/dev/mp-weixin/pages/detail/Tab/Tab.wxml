@@ -1,0 +1,1 @@
+<view class="tabBox"><view data-event-opts="{{[['tap',[['toggleTab',['$event']]]]]}}" class="{{['item picText',(isTab==true)?'active':'']}}" bindtap="__e"><text>图文介绍</text></view><view data-event-opts="{{[['tap',[['toggleTab',['$event']]]]]}}" class="{{['item specArg',(isTab==false)?'active':'']}}" bindtap="__e"><text>规格参数</text></view></view>

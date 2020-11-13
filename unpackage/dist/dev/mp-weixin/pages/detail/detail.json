@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "商品详情",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "m-swiper": "/pages/detail/Swiper/Swiper",
+    "m-price": "/pages/detail/Price/Price",
+    "m-nav": "/pages/detail/Nav/Nav",
+    "m-spec": "/pages/detail/Spec/Spec",
+    "m-address": "/pages/detail/Address/Address",
+    "m-tab": "/pages/detail/Tab/Tab",
+    "m-content": "/pages/detail/Content/Content"
+  }
+}

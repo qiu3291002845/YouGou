@@ -1,0 +1,1 @@
+<view class="leftBox"><scroll-view class="viewBox" scroll-y="true"><block wx:for="{{leftList}}" wx:for-item="item" wx:for-index="index" wx:key="cat_id"><view data-event-opts="{{[['tap',[['toggleIndex',[index]]]]]}}" class="{{['box',(index==selected)?'active':'']}}" bindtap="__e">{{item.cat_name}}</view></block></scroll-view></view>

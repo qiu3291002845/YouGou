@@ -34,6 +34,7 @@
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;
+  padding: 25rpx;
 }
 .container .content {
   margin-left: 20rpx;
@@ -59,7 +60,6 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  overflow: hidden;
   margin-bottom: 100rpx;
   font-size: 30rpx;
   line-height: 40rpx;

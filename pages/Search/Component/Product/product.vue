@@ -1,20 +1,46 @@
 <template>
-	<view class="container">
+	<view class="container" @click="toDetail">
 		<view class="img">
-			<image src="../../../../static/icon/icon_cart@3x.png" mode=""></image>
+			<image :src="goods.goods_big_logo == ''?'/static/model.jpg':goods.goods_big_logo" mode=""></image>
 		</view>
 		<view class="content">
 			<div class="title">
-				紫米ZMI 小米QC3.0快充车充双Usb只能输出 一拖二手机充电器牛逼
+				{{goods.goods_name}}
 			</div>
 			<div class="price">
-				<text>￥</text><text class="big">69</text><text>.00</text>
+				<text>￥</text><text class="big">{{goods.goods_price}}</text><text>.00</text>
 			</div>
 		</view>
 	</view>
 </template>
 
 <script>
+	export default {
+		props: {
+			item: {}
+		},
+		data() {
+			return {
+				goods: {}
+			}
+		},
+		methods: {
+			async findGoodsDetail(id) {
+				const [error, res] = await uni.request({
+					url: `https://uinav.com/api/public/v1/goods/detail?goods_id=${id}`
+				});
+				this.goods = res.data.message
+			},
+			toDetail(){
+				uni.navigateTo({
+					url:`/pages/detail/detail?id=${this.goods.goods_id}`
+				})
+			}
+		},
+		created() {
+			this.findGoodsDetail(this.item.goods_id)
+		}
+	}
 </script>
 
 <style lang="scss">
@@ -24,6 +50,7 @@
 
 		.img {
 			flex: 1;
+			padding: 25rpx;
 		}
 
 		.content {
@@ -41,7 +68,6 @@
 				display: -webkit-box;
 				-webkit-box-orient: vertical;
 				-webkit-line-clamp: 2;
-				overflow: hidden;
 				margin-bottom: 100rpx;
 				font-size: 30rpx;
 				line-height: 40rpx;

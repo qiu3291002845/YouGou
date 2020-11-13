@@ -3,7 +3,7 @@
 		<MSearch></MSearch>
 		<MSwiper></MSwiper>
 		<MClassify></MClassify>
-		<MFoolData :item="item" v-for="item in foolList" :key="index"></MFoolData>
+		<MFoolData :item="item" :ToIndex="index" v-for="(item,index) in foolList" :key="index"></MFoolData>
 	</view>
 </template>
 
