@@ -1,1 +1,1 @@
-<view><user-info vue-id="e8437cc0-1" bind:__l="__l"></user-info></view>
+<view><user-info vue-id="e8437cc0-1" bind:__l="__l"></user-info><person-list vue-id="e8437cc0-2" bind:__l="__l"></person-list><order vue-id="e8437cc0-3" bind:__l="__l"></order><status vue-id="e8437cc0-4" bind:__l="__l"></status></view>

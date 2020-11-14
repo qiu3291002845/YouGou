@@ -13,8 +13,7 @@ var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 11));func
 _vue.default.prototype.$store = _store.default;
 _vue.default.config.productionTip = false;
 
-
-_App.default.mpType = 'app';
+_App.default.mpType = "app";
 
 var app = new _vue.default(_objectSpread(_objectSpread({},
 _App.default), {}, {

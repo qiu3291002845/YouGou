@@ -1,1 +1,1 @@
-<view class="container"><view data-event-opts="{{[['tap',[['login',['$event']]]]]}}" class="viewBox" bindtap="__e"><view class="avatar"><image src="../../../static/avatar.jpg" mode></image></view><view class="login"><text>登录/注册</text></view></view></view>
+<view class="container"><view data-event-opts="{{[['tap',[['login',['$event']]]]]}}" class="viewBox" bindtap="__e"><view class="avatar"><image src="../../../static/avatar.jpg" mode></image></view><view class="login"><view>登录/注册</view></view></view></view>

@@ -43,6 +43,7 @@
 }
 .container .login {
   color: white;
+  margin-top: 15rpx;
 }
 .container .avatar {
   width: 150rpx;

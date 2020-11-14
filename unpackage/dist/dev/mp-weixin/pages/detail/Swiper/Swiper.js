@@ -114,7 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -135,7 +135,10 @@ var _vuex = __webpack_require__(/*! vuex */ 12); //
 //
 //
 //
-var _default = { computed: (0, _vuex.mapState)({ info: function info(state) {return state.detail.info;} }) };exports.default = _default;
+var _default = { computed: (0, _vuex.mapState)({ info: function info(state) {return state.detail.info;} }), methods: { big: function big() {uni.previewImage({ urls: this.info.pics.map(function (item) {return item.pics_big_url;}) });
+
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

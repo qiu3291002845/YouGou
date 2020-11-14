@@ -2,6 +2,9 @@
   "navigationBarTitleText": "个人中心",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "user-info": "/pages/person/UserInfo/UserInfo"
+    "user-info": "/pages/person/UserInfo/UserInfo",
+    "person-list": "/pages/person/PersonList/PersonList",
+    "order": "/pages/person/Order/Order",
+    "status": "/pages/person/Status/Status"
   }
 }

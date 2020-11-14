@@ -1,0 +1,1 @@
+<view class="container"><view class="title"><text>我的订单</text></view><view class="content"><block wx:for="{{list}}" wx:for-item="item" wx:for-index="__i0__" wx:key="*this"><view class="item"><view class="{{['icon iconfont',item.icon]}}"></view><view class="title">{{item.title}}</view></view></block></view></view>

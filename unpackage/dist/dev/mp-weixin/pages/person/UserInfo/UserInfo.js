@@ -131,11 +131,8 @@ var _default =
 {
   methods: {
     login: function login() {
-      uni.login({
-        provider: "weixin",
-        success: function success(res) {
-          console.log(res);
-        } });
+      uni.navigateTo({
+        url: "/pages/Login/Login" });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

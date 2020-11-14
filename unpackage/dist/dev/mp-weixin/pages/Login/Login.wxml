@@ -1,0 +1,1 @@
+<view class="container"><view class="img"><image src="../../static/logo.png" mode></image></view><view class="content"><view class="title">申请获取以下权限</view><view class="desc">获取你的公开信息(昵称,头像,地区等)</view><button type="warn" open-type="getUserInfo" data-event-opts="{{[['tap',[['login',['$event']]]]]}}" bindtap="__e">授权登录</button></view></view>

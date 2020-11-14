@@ -190,8 +190,8 @@
 			flex: 1;
 			padding: 15rpx;
 		}
-
-		padding: 15rpx 15rpx;
+		background-color: #FFFFFF;
+		padding: 25rpx 25rpx;
 		height: 210rpx;
 		border-top: 1rpx solid #dddddd;
 		display: flex;

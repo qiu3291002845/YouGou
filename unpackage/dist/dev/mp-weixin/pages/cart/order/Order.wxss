@@ -25,7 +25,8 @@
 /* 透明度 */
 /* 文章场景相关 */
 .container {
-  padding: 15rpx 15rpx;
+  background-color: #FFFFFF;
+  padding: 25rpx 25rpx;
   height: 210rpx;
   border-top: 1rpx solid #dddddd;
   display: -webkit-box;
