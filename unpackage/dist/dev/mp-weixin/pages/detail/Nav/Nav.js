@@ -150,8 +150,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
 
     },
     joinCart: function joinCart() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
-                  wx.setStorageSync("goodsList", [].concat(_toConsumableArray(wx.getStorageSync("goodsList")), [_this.info.goods_id])));case 2:
-                console.log(wx.getStorageSync("goodsList"));case 3:case "end":return _context.stop();}}}, _callee);}))();
+                  wx.setStorageSync("goodsList", [].concat(_toConsumableArray(wx.getStorageSync("goodsList")), [_this.info.goods_id])));case 2:case "end":return _context.stop();}}}, _callee);}))();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

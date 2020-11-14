@@ -148,6 +148,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
 var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var Address = function Address() {__webpack_require__.e(/*! require.ensure | pages/cart/address/Address */ "pages/cart/address/Address").then((function () {return resolve(__webpack_require__(/*! ./address/Address.vue */ 66));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Order = function Order() {__webpack_require__.e(/*! require.ensure | pages/cart/order/Order */ "pages/cart/order/Order").then((function () {return resolve(__webpack_require__(/*! ./order/Order.vue */ 73));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Total = function Total() {__webpack_require__.e(/*! require.ensure | pages/cart/Total/Total */ "pages/cart/Total/Total").then((function () {return resolve(__webpack_require__(/*! ./Total/Total.vue */ 80));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
@@ -159,13 +160,11 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
 
   computed: (0, _vuex.mapState)({
     orderList: function orderList(state) {return state.cart.orderList;},
-    goodsList: function goodsList(state) {return state.cart.goodsList;} }),
+    goodsList: function goodsList(state) {return state.cart.goodsList;},
+    isSelectedAll: function isSelectedAll(state) {return state.cart.isSelectedAll;},
+    isSelectAll: function isSelectAll(state) {return state.cart.isSelectAll;},
+    isNull: function isNull(state) {return state.cart.isNull;} }),
 
-  data: function data() {
-    return {
-      // goodsList: []
-    };
-  },
   methods: {
     findOrder: function findOrder() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 wx.showLoading({
@@ -175,14 +174,15 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
                 wx.hideLoading();
                 if (_this.orderList) {
                   _this.$store.commit("cart/totalIndex", _this.orderList.length);
+                  _this.$store.commit("cart/toggleIsNull", false);
                 }case 5:case "end":return _context.stop();}}}, _callee);}))();
-    },
-    handleClick: function handleClick() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
-                console.log(_this2.$refs.order.toggleSelected());case 1:case "end":return _context2.stop();}}}, _callee2);}))();
     } },
 
-  onShow: function onShow() {
-    this.findOrder();
+  onShow: function onShow() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                _this2.findOrder());case 2:
+              _this2.$store.commit("cart/toggleAll", _this2.isSelectedAll.map(function (item) {return 0;}));
+              _this2.$store.commit("cart/changeAll", false);
+              _this2.$store.commit("cart/changeTotal", 0);case 5:case "end":return _context2.stop();}}}, _callee2);}))();
   },
   created: function created() {
     this.findOrder();

@@ -29,6 +29,12 @@
   height: 20rpx;
   margin: 3rpx 0;
 }
+.isNull {
+  margin: 50rpx auto;
+  width: 750rpx;
+  font-size: 40rpx;
+  text-align: center;
+}
 .orderBox {
   margin-bottom: 100rpx;
 }

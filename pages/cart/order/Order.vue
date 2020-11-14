@@ -42,7 +42,9 @@
 		computed: mapState({
 			totalPrice: state => state.cart.totalPrice,
 			isSelectedAll: state => state.cart.isSelectedAll,
-			totalIndex: state => state.cart.totalIndex
+			totalIndex: state => state.cart.totalIndex,
+			orderList: state => state.cart.orderList,
+			total: state => state.cart.total,
 		}),
 		props: {
 			item: {},
@@ -60,13 +62,14 @@
 		watch: {
 			isSelectedAll(n, o) {
 				if (n[this.sIndex]) {
-					let price = (this.storageList.length * this.item.goods_price);
-					this.$store.commit("cart/changeTotalPrice", price);
-					this.isSelect = true
-				} else {
-					let price = -(this.storageList.length * this.item.goods_price);
+					let price = (this.storageList.length * this.item.goods_price)
 					this.$store.commit("cart/changeTotalPrice", price)
-					this.isSelect = false
+					this.isSelect = true;
+					this.$store.commit("cart/changeTotal", this.total);
+				} else {
+					this.$store.commit("cart/clearTotalPrice")
+					this.isSelect = false;
+					this.$store.commit("cart/changeTotal", 0);
 				}
 			}
 		},
@@ -77,25 +80,29 @@
 					index: this.sIndex,
 					val: this.isSelect
 				})
-				if (this.isSelect) {
-					let price = (this.storageList.length * this.item.goods_price);
-					this.$store.commit("cart/changeTotalPrice", price);
-				} else {
-					let price = -(this.storageList.length * this.item.goods_price);
-					this.$store.commit("cart/changeTotalPrice", price);
-				}
 				if ((this.isSelectedAll.filter(item =>
 						item == 1).length) == this.totalIndex) {
 					this.$store.commit("cart/changeAll", true);
 				} else {
 					this.$store.commit("cart/changeAll", false);
 				}
+				if (this.isSelect) {
+					let price = (this.storageList.length * this.item.goods_price)
+					this.$store.commit("cart/changeTotalPrice", price);
+					this.$store.commit("cart/changeTotal", this.storageList.length + this.total);
+				} else {
+					let price = -(this.storageList.length * this.item.goods_price);
+					this.$store.commit("cart/changeTotalPrice", price)
+					this.$store.commit("cart/changeTotal", this.total - this.storageList.length);
+				}
 			},
 			async jia() {
 				await wx.setStorageSync("goodsList", [...wx.getStorageSync("goodsList"), this.item.goods_id]);
-				this.$store.commit("cart/changeTotal", wx.getStorageSync("goodsList").length)
+				if (this.isSelect) {
+					console.log(this.total)
+					this.$store.commit("cart/changeTotal", this.total + 1);
+				}
 				this.findNum()
-				console.log(this.item.goods_price)
 				if (this.isSelect) {
 					this.$store.commit("cart/changeTotalPrice", this.item.goods_price)
 				}
@@ -105,9 +112,15 @@
 				const index = wx.getStorageSync("goodsList").indexOf(this.item.goods_id);
 				await list.splice(index, 1)
 				await wx.setStorageSync("goodsList", list);
-				this.$store.commit("cart/changeTotal", wx.getStorageSync("goodsList").length)
 				if (this.isSelect) {
+					this.$store.commit("cart/changeTotal", this.total - 1);
 					this.$store.commit("cart/changeTotalPrice", -this.item.goods_price)
+					if (this.total == 0) {
+						this.$store.commit("cart/changeAll", false);
+					}
+				}
+				if (wx.getStorageSync("goodsList").length == 0) {
+					this.$store.commit("cart/toggleIsNull", true);
 				}
 				this.findNum();
 			},
@@ -116,7 +129,6 @@
 					this.storageList = wx.getStorageSync("goodsList").filter(item => {
 						return item == this.item.goods_id
 					})
-					this.$store.commit("cart/changeTotal", wx.getStorageSync("goodsList").length);
 				}
 			}
 		},
@@ -125,7 +137,6 @@
 		},
 		onReady() {
 			this.findNum();
-
 		},
 	}
 </script>

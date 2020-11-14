@@ -32,20 +32,20 @@
 			total: state => state.cart.total,
 			totalPrice: state => state.cart.totalPrice,
 			isSelectAll: state => state.cart.isSelectAll,
-			totalIndex: state => state.cart.totalIndex
+			totalIndex: state => state.cart.totalIndex,
+			orderList: state => state.cart.orderList,
 		}),
-		data() {
-			return {
-
-			}
-		},
 		methods: {
 			toggleRadio() {
 				this.$store.commit("cart/changeAll", !this.isSelectAll)
 				if (this.isSelectAll) {
+					this.$store.commit("cart/clearTotalPrice")
 					this.$store.commit("cart/toggleAll", this.isSelectedAll.map(item => 1))
+					this.$store.commit("cart/changeTotal", wx.getStorageSync("goodsList").length);
 				} else {
+					this.$store.commit("cart/clearTotalPrice")
 					this.$store.commit("cart/toggleAll", this.isSelectedAll.map(item => 0))
+					this.$store.commit("cart/changeTotal", 0);
 				}
 			}
 		},

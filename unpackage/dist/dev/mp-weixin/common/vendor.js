@@ -10151,7 +10151,8 @@ var ModuleCart = {
     totalPrice: 0,
     totalPriceList: [],
     totalIndex: 0,
-    isSelectAll: false },
+    isSelectAll: false,
+    isNull: true },
 
   mutations: {
     toggleRadio: function toggleRadio(state, res) {
@@ -10159,6 +10160,9 @@ var ModuleCart = {
     },
     toggleAll: function toggleAll(state, res) {
       state.isSelectedAll = res;
+    },
+    toggleIsNull: function toggleIsNull(state, res) {
+      state.isNull = res;
     },
     totalIndex: function totalIndex(state, res) {
       state.totalIndex = res;
@@ -10183,6 +10187,10 @@ var ModuleCart = {
       state.totalPrice = state.totalPriceList.reduce(function (a, v) {
         return a + v;
       });
+    },
+    clearTotalPrice: function clearTotalPrice(state, res) {
+      state.totalPriceList = [];
+      state.totalPrice = 0;
     } },
 
   actions: {

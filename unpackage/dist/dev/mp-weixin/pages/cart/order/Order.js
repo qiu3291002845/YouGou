@@ -158,7 +158,9 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
   computed: (0, _vuex.mapState)({
     totalPrice: function totalPrice(state) {return state.cart.totalPrice;},
     isSelectedAll: function isSelectedAll(state) {return state.cart.isSelectedAll;},
-    totalIndex: function totalIndex(state) {return state.cart.totalIndex;} }),
+    totalIndex: function totalIndex(state) {return state.cart.totalIndex;},
+    orderList: function orderList(state) {return state.cart.orderList;},
+    total: function total(state) {return state.cart.total;} }),
 
   props: {
     item: {},
@@ -179,10 +181,11 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
         var price = this.storageList.length * this.item.goods_price;
         this.$store.commit("cart/changeTotalPrice", price);
         this.isSelect = true;
+        this.$store.commit("cart/changeTotal", this.total);
       } else {
-        var _price = -(this.storageList.length * this.item.goods_price);
-        this.$store.commit("cart/changeTotalPrice", _price);
+        this.$store.commit("cart/clearTotalPrice");
         this.isSelect = false;
+        this.$store.commit("cart/changeTotal", 0);
       }
     } },
 
@@ -193,37 +196,47 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
         index: this.sIndex,
         val: this.isSelect });
 
-      if (this.isSelect) {
-        var price = this.storageList.length * this.item.goods_price;
-        this.$store.commit("cart/changeTotalPrice", price);
-      } else {
-        var _price2 = -(this.storageList.length * this.item.goods_price);
-        this.$store.commit("cart/changeTotalPrice", _price2);
-      }
       if (this.isSelectedAll.filter(function (item) {return (
           item == 1);}).length == this.totalIndex) {
         this.$store.commit("cart/changeAll", true);
       } else {
         this.$store.commit("cart/changeAll", false);
       }
+      if (this.isSelect) {
+        var price = this.storageList.length * this.item.goods_price;
+        this.$store.commit("cart/changeTotalPrice", price);
+        this.$store.commit("cart/changeTotal", this.storageList.length + this.total);
+      } else {
+        var _price = -(this.storageList.length * this.item.goods_price);
+        this.$store.commit("cart/changeTotalPrice", _price);
+        this.$store.commit("cart/changeTotal", this.total - this.storageList.length);
+      }
     },
     jia: function jia() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
                   wx.setStorageSync("goodsList", [].concat(_toConsumableArray(wx.getStorageSync("goodsList")), [_this.item.goods_id])));case 2:
-                _this.$store.commit("cart/changeTotal", wx.getStorageSync("goodsList").length);
+                if (_this.isSelect) {
+                  console.log(_this.total);
+                  _this.$store.commit("cart/changeTotal", _this.total + 1);
+                }
                 _this.findNum();
-                console.log(_this.item.goods_price);
                 if (_this.isSelect) {
                   _this.$store.commit("cart/changeTotalPrice", _this.item.goods_price);
-                }case 6:case "end":return _context.stop();}}}, _callee);}))();
+                }case 5:case "end":return _context.stop();}}}, _callee);}))();
     },
     jian: function jian() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var list, index;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 list = wx.getStorageSync("goodsList");
                 index = wx.getStorageSync("goodsList").indexOf(_this2.item.goods_id);_context2.next = 4;return (
                   list.splice(index, 1));case 4:_context2.next = 6;return (
                   wx.setStorageSync("goodsList", list));case 6:
-                _this2.$store.commit("cart/changeTotal", wx.getStorageSync("goodsList").length);
                 if (_this2.isSelect) {
+                  _this2.$store.commit("cart/changeTotal", _this2.total - 1);
                   _this2.$store.commit("cart/changeTotalPrice", -_this2.item.goods_price);
+                  if (_this2.total == 0) {
+                    _this2.$store.commit("cart/changeAll", false);
+                  }
+                }
+                if (wx.getStorageSync("goodsList").length == 0) {
+                  _this2.$store.commit("cart/toggleIsNull", true);
                 }
                 _this2.findNum();case 9:case "end":return _context2.stop();}}}, _callee2);}))();
     },
@@ -232,7 +245,6 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
                   _this3.storageList = wx.getStorageSync("goodsList").filter(function (item) {
                     return item == _this3.item.goods_id;
                   });
-                  _this3.$store.commit("cart/changeTotal", wx.getStorageSync("goodsList").length);
                 }case 1:case "end":return _context3.stop();}}}, _callee3);}))();
     } },
 
@@ -241,7 +253,6 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
   },
   onReady: function onReady() {
     this.findNum();
-
   } };exports.default = _default;
 
 /***/ }),

@@ -10,7 +10,8 @@ export const ModuleCart = {
 		totalPrice: 0,
 		totalPriceList: [],
 		totalIndex: 0,
-		isSelectAll: false
+		isSelectAll: false,
+		isNull:true
 	},
 	mutations: {
 		toggleRadio(state, res) {
@@ -18,6 +19,9 @@ export const ModuleCart = {
 		},
 		toggleAll(state, res) {
 			state.isSelectedAll = res;
+		},
+		toggleIsNull(state,res){
+			state.isNull = res;
 		},
 		totalIndex(state, res) {
 			state.totalIndex = res;
@@ -43,6 +47,10 @@ export const ModuleCart = {
 				return a + v
 			});
 		},
+		clearTotalPrice(state,res){
+			state.totalPriceList = []
+			state.totalPrice = 0
+		}
 	},
 	actions: {
 		async findOrder({

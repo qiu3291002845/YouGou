@@ -35,9 +35,8 @@
 			},
 			async joinCart() {
 				await wx.setStorageSync("goodsList", [...wx.getStorageSync("goodsList"), this.info.goods_id]);
-				console.log(wx.getStorageSync("goodsList"))
 			}
-		}
+		},
 	}
 </script>
 
